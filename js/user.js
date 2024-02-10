@@ -107,6 +107,7 @@ window.addEventListener("DOMContentLoaded", async function () {
     var user = userarray[i];
     // console.log(uid);
     if (user.uid == uid || edited == true) {
+
       card.innerHTML += CreateUI_profile(user.name, user.about, user.image, user.uid,gender, count);
     }
   }
@@ -140,7 +141,7 @@ document.getElementById('photo_profile').addEventListener('change', function () 
 
 async function deletePost(e) {
   var uniqueId = e.id;
-  console.log(uniqueId);
+  // console.log(uniqueId);
 
   await deleteDoc(doc(db, "posts", uniqueId));
   window.location.reload();
@@ -181,7 +182,7 @@ window.addEventListener("DOMContentLoaded", async function () {
       var timestamp = calculateTimeAgo(blog.timestamp)
       feedbck.innerHTML += createUI(blog.title, blog.desc, blog.image, blog.uid, blog.blogId, UserImage.image, UserImage.name, timestamp);
       title_top.innerHTML = `${UserImage.name}`;
-      console.log(blog.blogId);
+      // console.log(blog.blogId);
 
     }
   }
@@ -189,7 +190,7 @@ window.addEventListener("DOMContentLoaded", async function () {
 function createUI(title, description, image, uid, unID, UserImage, username, timestamp) {
   var length = description.length;
   var uniqueId = unID; 
-  console.log(unID);
+  // console.log(unID);
 
   var UI = `
     <div class="post-box tech">
@@ -237,7 +238,7 @@ async function edit_profile() {
   querySnapshot.forEach(async function (doc) {
     if (doc.data().uid == uid) {
       card.innerHTML = "";
-      console.log("yes");
+      // console.log("yes");
 
       // Get a reference to the document
       const docRef = doc.ref;
@@ -251,7 +252,7 @@ async function edit_profile() {
       });
       card.innerHTML += CreateUI_profile(name_profile.value, about_profile.value, imageURL, uid);
 
-      console.log("Document updated for uid: ", uid);
+      // console.log("Document updated for uid: ", uid);
     }
   });
 
@@ -284,13 +285,13 @@ function imageUpload(file) {
         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log("Upload is " + progress + "% done");
+        // console.log("Upload is " + progress + "% done");
         switch (snapshot.state) {
           case "paused":
-            console.log("Upload is paused");
+            // console.log("Upload is paused");
             break;
           case "running":
-            console.log("Upload is running");
+            // console.log("Upload is running");
             break;
         }
       },
@@ -315,7 +316,7 @@ function imageUpload(file) {
       () => {
         // Upload completed successfully, now we can get the download URL
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          console.log("File available at", downloadURL);
+          // console.log("File available at", downloadURL);
           resolve(downloadURL);
         });
       }
@@ -328,19 +329,10 @@ window.imageUpload = imageUpload;
 function CreateUI_profile(name, bio, image, uid,gender, count) {
   var new_image= image;
   
-  // console.log("create ui profile");
-  if (!image) {
-    if(gender== 'm')
-    {
-      image = "../images/man.jpg"
-    }
-    else{
-      image = "../images/woman.jpg"
-    }
-  }
+
   var ui = `
   <div class="page-1">
-                <img src=${image} alt="">
+                <img src=${new_image} alt="">
             </div>
             
             <div class="page-2">

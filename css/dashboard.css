@@ -321,7 +321,7 @@ footer{
     height: 60px;
     padding-top: 20px;
     margin-top: 15rem;   
-    background: #111;
+    background: #161616e5;
     position: relative;
 }
 
@@ -336,6 +336,10 @@ footer{
     font-size: 15px;
 }
 
+.footer-container-mine p a{
+  color:  rgb(4, 160, 160);
+  text-decoration: none;
+}
 
 
 @media (max-width: 768px){

@@ -34,15 +34,31 @@ async function signup(event) {
         const uid = success.user.uid;
         // localStorage.setItem("uid", uid);
         // console.log(uid, "uid");
+        // console.log(gender_signup.value);
 
-        var UserFromSignup = {
-            email: email_signup.value,
-            name: name_sign.value,
-            about: " ", // Set a default value, or use null if that's more appropriate
-             imageURL: " ", // You may want to set a default value for imageURL as well
-            uid: uid,
-            gender: gender_signup.value,
+        if(gender_signup.value == 'm')
+        {
+            var UserFromSignup = {
+                email: email_signup.value,
+                name: name_sign.value,
+                about: " ", // Set a default value, or use null if that's more appropriate
+                 imageURL: "https://firebasestorage.googleapis.com/v0/b/just-share-bb959.appspot.com/o/images%2Fman.jpg?alt=media&token=ec2be95a-2409-4f87-9acb-448d3397fc78", // You may want to set a default value for imageURL as well
+                uid: uid,
+                gender: gender_signup.value,
+            }
         }
+        else
+        {
+            var UserFromSignup = {
+                email: email_signup.value,
+                name: name_sign.value,
+                about: " ", // Set a default value, or use null if that's more appropriate
+                 imageURL: "https://firebasestorage.googleapis.com/v0/b/just-share-bb959.appspot.com/o/images%2Fwoman.jpg?alt=media&token=9dce94b6-2df3-4fbb-b30e-5f1a342f2645", // You may want to set a default value for imageURL as well
+                uid: uid,
+                gender: gender_signup.value,
+            }
+        }
+        
         
         const docRef = await addDoc(collection(db, "users"), UserFromSignup);
 

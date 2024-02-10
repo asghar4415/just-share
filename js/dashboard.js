@@ -15,27 +15,6 @@ import {
 } from "./firebase.js";
 
 
-// import { callthis } from "./postpage.js";
-
-// ====================header====================
-
-// // Initialize LocomotiveScroll
-// Reference to your Firestore collection
-// const firestore = getFirestore();
-// const dataCollection = collection(firestore, 'posts'); // Replace with your actual collection name
-
-// // Fetch data from Firestore
-// getDocs(dataCollection)
-//   .then((querySnapshot) => {
-//     // Data has been loaded, call the function to initialize LocomotiveScroll
-//     initializeLocomotiveScroll();
-//     console.log("Data loaded successfully!");
-    
-//   })
-//   .catch((error) => {
-//     console.error("Error loading Firestore data:", error);
-//   });
-
 
 
 
@@ -84,7 +63,7 @@ window.addEventListener("DOMContentLoaded", function () {
   if (!uid) {
     window.location.href = "index.html";
   }
-  console.log(uid, "uid");
+  // console.log(uid, "uid");
 });
 
 function myprofile() {
@@ -139,11 +118,6 @@ window.addEventListener("DOMContentLoaded", async function () {
 
     });
   });
-  // console.log(BlogArr, "BlogArr");
-  // var countforblogs=document.getElementById("countforblogs");
-  // countforblogs.innerHTML= `
-  // <h3>Trending Blogs (${BlogArr.length})</h3>
-  // `;
 
 
   for (var i = 0; i < BlogArr.length; i++) {
@@ -215,7 +189,7 @@ async function addpost() {
   if (fileinput.files[0]) {
     imageURL = await imageUpload(fileinput.files[0]);
   } else {
-    imageURL =await imageUpload("https://firebasestorage.googleapis.com/v0/b/just-share-bb959.appspot.com/o/images%2F1.PNG?alt=media&token=9a6989ac-568d-4242-a099-55d8f790ffbf");
+    imageURL ="https://firebasestorage.googleapis.com/v0/b/just-share-bb959.appspot.com/o/images%2F1.PNG?alt=media&token=9a6989ac-568d-4242-a099-55d8f790ffbf";
   }
   
   var title = document.getElementById("title");
@@ -328,7 +302,7 @@ function imageUpload(file) {
       () => {
         // Upload completed successfully, now we can get the download URL
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          console.log("File available at", downloadURL);
+          // console.log("File available at", downloadURL);
           resolve(downloadURL);
         });
       }

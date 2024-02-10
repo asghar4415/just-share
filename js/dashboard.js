@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
   setTimeout(function () {
     // Hide loader after some time (simulating loaded content)
     hideLoader();
-  }, 2500); // Change this to your desired loading time
+  }, 3500); // Change this to your desired loading time
 });
 
 function showLoader() {
@@ -67,25 +67,17 @@ function showLoader() {
 function hideLoader() {
   document.getElementById("loader").style.display = "none";
   document.getElementById("l-main").style.display = "none";
-
   document.getElementById("content-box").style.display = "block";
 }
 
 // ====================loader====================
 
-
-var uniqIdforPostpage;
-var content = document.getElementById("content");
-
-var title_top = document.getElementById("top-title");
 const feedbck = document.getElementById("post_container");
 const avatar = document.getElementById("avatar_nav");
 var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
   keyboard: false
 })
-var userbtn = document.getElementById("userbtn");
-var feedbtn = document.getElementById("feedbtn");
-var curved= document.getElementById("curved");
+
 // if user already login on same pc
 window.addEventListener("DOMContentLoaded", function () {
   var uid = localStorage.getItem("uid");
@@ -106,9 +98,9 @@ window.myprofile = myprofile;
 
 window.addEventListener("DOMContentLoaded", async function () {
   feedbck.innerHTML = "";
-  console.log("blog load");
+  // console.log("blog load");
   var uid = localStorage.getItem("uid");
-  console.log(uid, "uid");
+  // console.log(uid, "uid");
 
   if (!uid) {
     location.replace("./index.html");
@@ -129,7 +121,7 @@ window.addEventListener("DOMContentLoaded", async function () {
     if (user.uid == uid) {
       avatar.innerHTML = uiForNav(user.name, user.image);
       var UserImage = await getImageofUser(user.uid);
-      curved.innerHTML = `Welcome ${UserImage.name}`;
+      // curved.innerHTML = `Welcome ${UserImage.name}`;
 
     }
   }
@@ -147,16 +139,16 @@ window.addEventListener("DOMContentLoaded", async function () {
 
     });
   });
-  console.log(BlogArr, "BlogArr");
-  var countforblogs=document.getElementById("countforblogs");
-  countforblogs.innerHTML= `
-  <h3>Trending Blogs (${BlogArr.length})</h3>
-  `;
+  // console.log(BlogArr, "BlogArr");
+  // var countforblogs=document.getElementById("countforblogs");
+  // countforblogs.innerHTML= `
+  // <h3>Trending Blogs (${BlogArr.length})</h3>
+  // `;
 
 
   for (var i = 0; i < BlogArr.length; i++) {
     var blog = BlogArr[i];
-    console.log(blog.uid, "blog.uid");
+    // console.log(blog.uid, "blog.uid");
     var UserImage = await getImageofUser(blog.uid);
     var timestamp = calculateTimeAgo(blog.timestamp);
     if (blog.uid == uid) {
@@ -210,11 +202,7 @@ document.getElementById('file-input').addEventListener('change', function () {
   }
 });
 
-//=======================================================
 
-
-
-////////////////////////////==================================
 
 
 
@@ -227,16 +215,14 @@ async function addpost() {
   if (fileinput.files[0]) {
     imageURL = await imageUpload(fileinput.files[0]);
   } else {
-    imageURL = "https://firebasestorage.googleapis.com/v0/b/my-first-project-1-c98da.appspot.com/o/images%2Fclose-up-elegant-decoration-house-1.jpg?alt=media&token=3757c49e-cbc0-452f-8408-ced38f5d6eff";
+    imageURL =await imageUpload("https://firebasestorage.googleapis.com/v0/b/just-share-bb959.appspot.com/o/images%2F1.PNG?alt=media&token=9a6989ac-568d-4242-a099-55d8f790ffbf");
   }
-
+  
   var title = document.getElementById("title");
   var description = document.getElementById("description");
   var file = document.getElementById("file-input");
   var uid = localStorage.getItem("uid");
 
-  // Add a timestamp field
-  // var timestamp = firebase.firestore.FieldValue.serverTimestamp();
   var timestamp = new Date().getTime();
   var postObj = {
     title: title.value,
@@ -254,6 +240,7 @@ async function addpost() {
   title.value = "";
   description.value = "";
   file.value = "";
+  
 }
 
 window.addpost = addpost;
@@ -272,7 +259,7 @@ function createUI(title, description, image, uid, unID, userimage, username, tim
   <div class="post-box tech">
   <img src="${image}" alt="" class="post-img">
   
-  <a href="#" id=${uniqueId} onclick="postpage(this)" class="post-title">${title}</a>
+  <a href="#" id=${uniqueId}" class="post-title">${title}</a>
   
   <p class="post-description">${description}</p>
   <div class="profile">
@@ -287,6 +274,8 @@ function createUI(title, description, image, uid, unID, userimage, username, tim
 }
 
 window.createUI = createUI;
+
+
 
 
 function imageUpload(file) {
@@ -392,19 +381,17 @@ function calculateTimeAgo(timestamp) {
   } else if (minutes < 60) {
     timeAgo = Math.floor(minutes) + " minutes ago";
   } else if (hours < 24) {
+    if(hours < 2)
+    {
+      timeAgo = Math.floor(hours) + " hour ago";
+    }
     timeAgo = Math.floor(hours) + " hours ago";
   } else {
     timeAgo = Math.floor(days) + " days ago";
   }
   return timeAgo;
 }
-
-
-function postpage(element) {
-  localStorage.setItem("blogId", element.id);
-  window.location.href = "postpage.html";
-}
-window.postpage = postpage;
+window.calculateTimeAgo = calculateTimeAgo;
 
 
 

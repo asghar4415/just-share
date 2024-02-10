@@ -27,17 +27,24 @@
 
 <body style="background-color: #F9F7F4">
 
+    <div class="leader-main" id="l-main">
+    <div class="loader" id="loader">
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__ball"></div>
+      </div>
+    </div>
 
-        <div class="leader-main" id="l-main">
-            <div class="loader" id="loader"></div>
-        </div>
         <div id="content-box">
             <div class="backbutton">
                 <button onclick="backbtn()"><i class="fa-solid fa-arrow-left"></i></button>
             </div>
             <div class="profile-ava" id="card">
                 <!-- <div class="page-1">
-                <img src="/images/screen-shot-2023-04-13-at-10-35-31-am.webp" alt="">
+                <img src="/images/screen-sho    t-2023-04-13-at-10-35-31-am.webp" alt="">
             </div>
 
             <div class="page-2">
@@ -47,11 +54,7 @@
                 <div class="p-about">
                     <h3>"Web Developer"</h3>
                 </div>
-                <div class="p-social">
-                    <a href="https://abdullahshafiq.online/"><i class="fa-solid fa-user"></i></a>
-                    <a href="https://abdullahshafiq.online/"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://abdullahshafiq.online/"><i class="fa-brands fa-instagram"></i></a>
-                </div>
+              
                 <div class="blog-created">
                     <h4>53</h4>
                     <p>Blogs Created</p>
@@ -99,18 +102,20 @@
                         <form class="form">
                             <div class="top">
                                 <div class="title">Edit Profile</div>
-                                <button class="close-btn" id="close-btn" data-bs-dismiss="modal"><i
-                                        class="fa-solid fa-xmark"></i></button>
+                                
                             </div>
-                            <button class="close-btn" id="upload-btn"><i class="fa-solid fa-upload"></i></button>
+                            <button  id="upload-btn">Profile Photo <i class="fa-solid fa-upload"></i></button>
                             <!-- Hidden file input element -->
                             <div id="file-name"></div>
                             <input type="file" id="photo_profile" style="display: none;">
                             <input class="input" placeholder="Name" type="text" id="name_profile">
-                            <textarea class="input" name="About" placeholder="description" id="about_profile" cols="30"
+                            <textarea class="input" name="About" placeholder="About " id="about_profile" cols="30"
                                 rows="10"></textarea>
 
-                            <button class="button-confirm" onclick="edit_profile()">Confrim</button>
+                                <div class="buttons">
+                                    <button class="button-confirm" onclick="edit_profile()">Confirm</button>
+                                <button class="close-btn" id="close-btn" data-bs-dismiss="modal">Cancel</button>
+                                </div>
                         </form>
                     </div>
 

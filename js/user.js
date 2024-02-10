@@ -24,6 +24,7 @@ var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
   keyboard: false
 })
 var count=0;
+var gender;
 // ====================loader====================
 document.addEventListener("DOMContentLoaded", function () {
   // Show loader on page load
@@ -33,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
   setTimeout(function () {
     // Hide loader after some time (simulating loaded content)
     hideLoader();
-  }, 2000); // Change this to your desired loading time
+  }, 2500); // Change this to your desired loading time
 });
 
 function showLoader() {
@@ -44,7 +45,6 @@ function showLoader() {
 function hideLoader() {
   document.getElementById("loader").style.display = "none";
   document.getElementById("l-main").style.display = "none";
-
   document.getElementById("content-box").style.display = "block";
 }
 
@@ -80,14 +80,15 @@ window.addEventListener("DOMContentLoaded", async function () {
       name: doc.data().name,
       uid: doc.data().uid,
       image: doc.data().imageURL,
+      gender: doc.data().gender,
+
     });
   });
 
   for (var i = 0; i < userarray.length; i++) {
     var user = userarray[i];
     if (user.uid == uid) {
-      title_top.innerHTML = `Profile-${user.name}`;
-
+      title_top.innerHTML = `${user.name}`;
     }
   }
   var userarray = [];
@@ -98,16 +99,15 @@ window.addEventListener("DOMContentLoaded", async function () {
       about: doc.data().about,
       uid: doc.data().uid,
       image: doc.data().imageURL,
+      gender: doc.data().gender,
     });
   });
-  console.log(count);
+  // console.log(count);
   for (var i = 0; i < userarray.length; i++) {
     var user = userarray[i];
     // console.log(uid);
     if (user.uid == uid || edited == true) {
-      console.log("conndition matched");
-      // console.log(user.image);
-      card.innerHTML += CreateUI_profile(user.name, user.about, user.image, user.uid, count);
+      card.innerHTML += CreateUI_profile(user.name, user.about, user.image, user.uid,gender, count);
     }
   }
   // console.log(userarray);
@@ -150,9 +150,9 @@ window.deletePost = deletePost;
 
 window.addEventListener("DOMContentLoaded", async function () {
   // feedbck.innerHTML = "";
-  console.log("OnlyUserPost");
+  // console.log("OnlyUserPost");
   var uid = localStorage.getItem("uid");
-  console.log(uid, "uid");
+  // console.log(uid, "uid");
 
   if (!uid) {
     location.replace("./index.html");
@@ -176,7 +176,7 @@ window.addEventListener("DOMContentLoaded", async function () {
     var blog = BlogArr[i];
     // console.log(blog);
     if (blog.uid == uid) {
-      console.log("conndition matched");
+      // console.log("conndition matched");
       var UserImage = await getImageofUser(uid);
       var timestamp = calculateTimeAgo(blog.timestamp)
       feedbck.innerHTML += createUI(blog.title, blog.desc, blog.image, blog.uid, blog.blogId, UserImage.image, UserImage.name, timestamp);
@@ -195,7 +195,7 @@ function createUI(title, description, image, uid, unID, UserImage, username, tim
     <div class="post-box tech">
     <img src="${image}" alt="" class="post-img">
     
-    <a href="#" id=${uniqueId} onclick="postpage(this)" class="post-title">${title}</a>
+    <a href="#" id=${uniqueId}  class="post-title">${title}</a>
 
     
     <p class="post-description">${description}</p>
@@ -225,6 +225,7 @@ async function edit_profile() {
   if (fileinput.files[0]) {
     imageURL = await imageUpload(fileinput.files[0]);
   } else {
+
     imageURL = "./img/screen-shot-2023-04-13-at-10-35-31-am.webp";
   }
 
@@ -324,13 +325,18 @@ function imageUpload(file) {
 window.imageUpload = imageUpload;
 
 
-function CreateUI_profile(name, bio, image, uid, count) {
+function CreateUI_profile(name, bio, image, uid,gender, count) {
   var new_image= image;
   
-  console.log("create ui profile");
+  // console.log("create ui profile");
   if (!image) {
-      image = "https://firebasestorage.googleapis.com/v0/b/my-first-project-1-c98da.appspot.com/o/images%2Fscreen-shot-2023-04-13-at-10-35-31-am.webp?alt=media&token=b014caf2-8194-4b96-b122-49c06b561240";
-    console.log("image not found");
+    if(gender== 'm')
+    {
+      image = "../images/man.jpg"
+    }
+    else{
+      image = "../images/woman.jpg"
+    }
   }
   var ui = `
   <div class="page-1">
@@ -344,11 +350,7 @@ function CreateUI_profile(name, bio, image, uid, count) {
                 <div class="p-about">
                     <h3>"${bio}"</h3>
                 </div>
-                <div class="p-social">
-                    <a href="https://abdullahshafiq.online/"><i class="fa-solid fa-user"></i></a>
-                    <a href="https://abdullahshafiq.online/"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://abdullahshafiq.online/"><i class="fa-brands fa-instagram"></i></a>
-                </div>
+                
                 <div class="blog-created">
                     <h4>${count}</h4>
                     <p>Blogs Created</p>
@@ -403,9 +405,3 @@ function calculateTimeAgo(timestamp) {
 }
 window.calculateTimeAgo = calculateTimeAgo;
 
-
-function postpage(element) {
-  localStorage.setItem("blogId", element.id);
-  window.location.href = "postpage.html";
-}
-window.postpage = postpage;

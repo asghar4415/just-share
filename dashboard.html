@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="top-title">JUST SHARE</title>
+    <title id="top-title">Just Share.</title>
 
     <!-- Box-icon -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -22,8 +22,15 @@
 </head>
 
 <body>
-        <div class="leader-main" id="l-main">
-            <div class="loader" id="loader"></div>
+    <div class="leader-main" id="l-main">
+        <div class="loader" id="loader">
+            <div class="loader__bar"></div>
+            <div class="loader__bar"></div>
+            <div class="loader__bar"></div>
+            <div class="loader__bar"></div>
+            <div class="loader__bar"></div>
+            <div class="loader__ball"></div>
+          </div>
         </div>
 
         <div id="content-box" style="background-color: #F9F7F4">
@@ -40,9 +47,9 @@
                             <button onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i></button>
                         </div>
                         <div class="avatar-whole" onclick="myprofile()" id="avatar_nav">
-                            <!-- <div class="avatar">
+                            <div class="avatar">
                             <img src="images/male-avatar.png">
-                        </div> -->
+                        </div>
                         </div>
                     </div>
 
@@ -52,15 +59,14 @@
             <section class="home" id="home">
                 <div class="home-text container-mine">
                     <h2 class="home-title">Blogs</h2>
-                    <span class="home-subtitle"> Source of great content <br> <span id="curved"></span></span>
                 </div>
             </section>
-            <section class="after-blog">
+            <!-- <section class="after-blog">
                 <div class="all-heading" id="countforblogs">
-                    <!-- <h3>Trending Blogs</h3> -->
+                     <h3>Trending Blogs</h3>
                 </div>
                 <div class="line-break"></div>
-            </section>
+            </section> -->
 
 
             <section class="about container-mine" id="about">
@@ -115,10 +121,9 @@
                         <form class="form">
                             <div class="top">
                                 <div class="title">Create a post</div>
-                                <button class="close-btn" id="close-btn" data-bs-dismiss="modal"><i
-                                        class="fa-solid fa-xmark"></i></button>
+                                
                             </div>
-                            <button class="close-btn" id="upload-btn"><i class="fa-solid fa-upload"></i></button>
+                            <button id="upload-btn">Upload file <i class="fa-solid fa-upload"></i></button>
                             <!-- Hidden file input element -->
                             <div id="file-name"></div>
                             <input type="file" id="file-input" style="display: none;" id="blogImage">
@@ -126,50 +131,26 @@
                             <textarea class="input" name="description" placeholder="description" id="description"
                                 cols="30" rows="10"></textarea>
 
-                            <button class="button-confirm" onclick="addpost()">Post</button>
+                            <div class="buttons">
+                                <button class="button-confirm" onclick="addpost()">Post</button>
+                            <button class="close-btn" id="close-btn" data-bs-dismiss="modal">Cancel</button>
+                            </div>
                         </form>
                     </div>
 
                 </div>
             </div>
 
-            <footer>
+            <footer >
                 <div class="footer-container-mine">
-                    <div class="sec aboutus">
-                        <h2>About <br>
-                            Us</h2>
-                        <p>Wanna know? visit below...</p>
-                        <ul class="sci">
-                            <li><a href="https://abdullahshafiq.online/"><i class="fa-solid fa-user"></i></a></li>
-                            <li><a href="https://github.com/abdullahshafiq-20"><i class="fa-brands fa-github"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="sec quicklinks">
-                        <h2>Quick Links</h2>
-                        <ul>
-                            <li><a href="user.html">Profile</a></li>
-                        </ul>
-                    </div>
-                    <div class="sec contactBx">
-                        <h2>Contact Info</h2>
-                        <ul class="info">
-                            <li>
-                                <span><i class='bx bxs-map'></i></span>
-                                <span>Somewhere<br> on <br> earth.</span>
-                            </li>
-                            <li>
-                                <span><i class='bx bx-envelope'></i></span>
-                                <p><a href="mailto:as053266@gmail.com">as053266@gmail.com</a></p>
-                            </li>
-                        </ul>
-                    </div>
+                    <p>Designed by <a href="https://www.asgharali.online/">Asghar Ali</a></p>
                 </div>
             </footer>
+           
         </div>
 
 
-
+       
 
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"

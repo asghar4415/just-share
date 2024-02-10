@@ -384,12 +384,12 @@ body {
   }
 
 
-@media screen and (max-width: 396px)
+@media (max-width: 446px)
 {
   
   .backbutton
   {
-    margin-left: -20rem;
+    margin-left: -1rem;
     position: relative;
   }
   .profile-ava
@@ -403,15 +403,12 @@ body {
     margin-top: 2rem;
     border-radius: 8px;
     box-shadow: 5px 5px 5px 0px #ccc;
-    /* gap: 10px; */
-
+margin-left: 1rem;
   }
   .page-1{
     /* border: 1px solid #ccc; */
     width: 50%;
     padding: 10px;
-    /* height: 70%; */
-    /* border-radius: 50%; */
   }
   .page-1 img{
     /* width: 300px; */
@@ -607,6 +604,10 @@ margin-bottom: 1rem;
 .profile-name{
     font-size: .8rem;
     font-weight: 500;
+}
+footer
+{
+
 }
 }
 

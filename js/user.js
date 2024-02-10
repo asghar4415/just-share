@@ -249,8 +249,25 @@ async function edit_profile() {
         about: about_profile.value,
         imageURL: imageURL,
         edited: true,
+        
+
       });
-      card.innerHTML += CreateUI_profile(name_profile.value, about_profile.value, imageURL, uid);
+      var dummyarray=[];
+      var count2=0;
+      const querySnapshot_blog = await getDocs(collection(db, "posts"));
+  querySnapshot_blog.forEach(function (doc) {
+    dummyarray.push({
+      uid: doc.data().uid,
+    });
+  }
+  );
+  for (var i = 0; i < dummyarray.length; i++) {
+    var blog = dummyarray[i];
+    if (blog.uid == uid) {
+      count2++;
+    }
+  }
+      card.innerHTML += CreateUI_profile(name_profile.value, about_profile.value, imageURL, uid,gender,  count2);
 
       // console.log("Document updated for uid: ", uid);
     }
